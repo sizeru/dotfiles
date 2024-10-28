@@ -1,0 +1,123 @@
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    // "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "layer": "top",
+    "position": "left",
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    // "margin-top": 3,
+    // "margin-left": 3,
+    // "margin-right": 3,
+    // "margin-bottom": 3,
+    "modules-left": ["battery", "pulseaudio", "network", "backlight"],
+    "modules-center": ["clock"],
+    "modules-right": ["cpu", "memory", "temperature", "idle_inhibitor"],
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        // "format": "{:%H\n%M\n----\n%b\n%d}",
+        "format": "{:%H\n%M\n----\n%m\n%d}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "\n{usage}",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "\n{}"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format-alt": "{temperatureF}°F {icon}",
+        "tooltip-format": "",
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": " {icon}\n{temperatureC}°",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{icon}\n{percent}",
+        // "format-icons": ["🌑", "🌒", "🌓", "🌔", "🌕"]
+				"format-icons": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+        "on-scroll-up": "backlight up 500",
+        "on-scroll-down": "backlight down 500",
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}\n{capacity}",
+        "format-charging": "\n{capacity}",
+        "format-plugged": "<small>  </small>\n{capacity}",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "\n{signalStrength}",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{essid} on {ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "None ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "<small> </small><big>{icon}</big>\n{volume}\n{format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " \n{format_source}",
+        "format-source": "\n <big></big>\n{volume}",
+        "format-source-muted": "\n<small> </small><big></big>",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            // "default": ["🔈", "🔉", "🔊"],
+            "default": ["", "", "󰕾", ""]
+        },
+        "on-click": "hyprctl dispatch exec [float, move cursor 0% 0%] pavucontrol"
+    }
+}
+
